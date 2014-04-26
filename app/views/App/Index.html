@@ -1,0 +1,27 @@
+{{set . "title" "Home - GBlog" }}
+{{set . "home" "active" }}
+{{template "header.html" .}}
+<div class="content">
+    {{if .blogs}}
+    {{range $blog := .blogs}}
+     <div class="cell">
+      <div class="cell-subject">
+          <div>
+            <a href="/bloginfor/{{$blog.Id.Hex}}/{{$blog.ReadCnt}}" class="cell-subject-title" title="{{$blog.Title}}"><strang>{{$blog.GetShortTitle }}</strang></a>
+            <a href="#" class="comment-num" title="Comments">{{$blog.CommentCnt}}</a>
+          </div>
+          <div class="subject-infor">
+            <span class="label label-success">Author</span> &nbsp;&nbsp;<span>{{$blog.Email}}
+            </span>&nbsp;&nbsp;
+            <span class="label label-default">Date</span>&nbsp;&nbsp;{{$blog.CDate.Format "2006-01-02 15:04" }}&nbsp;&nbsp;
+            <span class="label label-info">Read</span>&nbsp;&nbsp;{{$blog.ReadCnt}}
+          </div>
+      </div>
+      <div class="cell-text">
+          <pre><code>{{$blog.GetShortContent }}</code></pre>
+      </div>
+    </div>
+    {{end}}
+    {{end}}
+</div>
+{{template "footer.html" .}}
