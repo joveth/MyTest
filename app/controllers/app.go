@@ -82,3 +82,6 @@ func (c App) Emails() revel.Result {
 	emails :=dao.FindAllEmails();
 	return c.Render(emails)
 }
+func (c App) About() revel.Result {
+	return c.Render()
+}
